@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using WebApplicationNorthWind.Northwind;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using WebApplicationNorthWind.Services;
 
 namespace WebApplicationNorthWind
 {
@@ -23,7 +22,35 @@ namespace WebApplicationNorthWind
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddDbContext<NorthwindDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("NorthwindConnectionConnection"));
+            });
+            services.AddMvc(opt =>
+            {
+                opt.Filters.Add(new RequireHttpsAttribute());
+            })
+            .AddJsonOptions(opt =>
+            {
+                opt.SerializerSettings.ReferenceLoopHandling =
+                  ReferenceLoopHandling.Ignore;
+            });
+            services.AddCors(cfg =>
+            {
+                cfg.AddPolicy("MyApplication", bldr =>
+                {
+                    bldr.AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+
+                cfg.AddPolicy("AnyGET", bldr =>
+                {
+                    bldr.AllowAnyHeader()
+                       .AllowAnyMethod()
+                        .AllowAnyOrigin();
+                });
+            });
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

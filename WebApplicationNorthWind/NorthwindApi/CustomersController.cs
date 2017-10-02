@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApplicationNorthWind.Northwind;
 
-namespace WebApplicationNorthWind.Controllers
+namespace WebApplicationNorthWind.NorthwindApi
 {
-    [Route("api/[controller]")]
-    public class ValuesController : Controller
+    [Produces("application/json")]
+    [Route("api/Customers")]
+    public class CustomersController : Controller
     {
         private NorthwindDbContext _context;
-
-        public ValuesController(NorthwindDbContext context)
+        public CustomersController(NorthwindDbContext context)
         {
             _context = context;
         }
@@ -19,26 +19,23 @@ namespace WebApplicationNorthWind.Controllers
             return Ok(_context.Customers.ToList());
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "GetCustomers")]
+        public IActionResult Get(int id)
         {
-            return "value";
+            var getCustomer = _context.Customers.FirstOrDefault(x => x.Id == id);
+            return Ok(getCustomer);
         }
 
-        // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
