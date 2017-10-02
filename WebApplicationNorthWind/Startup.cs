@@ -7,6 +7,7 @@ using WebApplicationNorthWind.Northwind;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using WebApplicationNorthWind.Services;
+using AutoMapper;
 
 namespace WebApplicationNorthWind
 {
@@ -50,6 +51,7 @@ namespace WebApplicationNorthWind
                         .AllowAnyOrigin();
                 });
             });
+            services.AddAutoMapper();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         }
 

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using WebApplicationNorthWind.Northwind;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationNorthWind.Services;
+using AutoMapper;
+using WebApplicationNorthWind.NorthwindModel.Employee;
 
 namespace WebApplicationNorthWind.NorthwindApi
 {
@@ -15,22 +17,29 @@ namespace WebApplicationNorthWind.NorthwindApi
     public class EmployeesController : Controller
     {
         private IEmployeeRepository _repository;
-        public EmployeesController(IEmployeeRepository repository)
+        private IMapper _mapper;
+
+        public EmployeesController(IEmployeeRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _repository.GetEmployeessAsync());
+            var getEmployees = await _repository.GetEmployeessAsync();
+            return Ok(_mapper.Map<IEnumerable<EmployeeViewModel>>(getEmployees));
         }
 
         [HttpGet("{id}", Name = "GetEmployees")]
         public async Task<IActionResult> Get(int id)
         {
-
+            if (!await _repository.EmployeeExists(id))
+            {
+                return NotFound($"employee with Id : {id} not founds");
+            }
             var getEmployee = await _repository.GetEmployeesAsync(id);
-            return Ok(getEmployee);
+            return Ok(_mapper.Map<EmployeeViewModel>(getEmployee));
         }
 
         [HttpPost]

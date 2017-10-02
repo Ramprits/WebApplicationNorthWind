@@ -14,6 +14,7 @@ namespace WebApplicationNorthWind.Services
         Task<Employees> InsertEmployeesAsync(Employees employee);
         Task<bool> UpdateEmployeesAsync(Employees employee);
         Task<bool> DeleteEmployeesAsync(int id);
+        Task<bool> EmployeeExists(int Id);
         Task<bool> SaveAllAsync();
     }
 }

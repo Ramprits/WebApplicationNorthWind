@@ -34,6 +34,11 @@ namespace WebApplicationNorthWind.Services
             return false;
         }
 
+        public async Task<bool> EmployeeExists(int Id)
+        {
+            return await _context.Employees.AnyAsync(x => x.EmployeeId == Id);
+        }
+
         public async Task<Employees> GetEmployeesAsync(int id)
         {
             return await _context.Employees.Include(x => x.EmployeeTerritories).FirstOrDefaultAsync(x => x.EmployeeId == id);
