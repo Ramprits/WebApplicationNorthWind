@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApplicationNorthWind.Northwind;
 
 namespace WebApplicationNorthWind.NorthwindModel.Employee
 {
@@ -22,5 +23,7 @@ namespace WebApplicationNorthWind.NorthwindModel.Employee
         public string HomePhone { get; set; }
         public string Extension { get; set; }
         public string Notes { get; set; }
+
+        public virtual ICollection<EmployeeTerritorieViewModel> EmployeeTerritories { get; set; } = new List<EmployeeTerritorieViewModel>();
     }
 }

@@ -14,6 +14,7 @@ namespace WebApplicationNorthWind.Infrastructure
         public EmployeeMapper()
         {
             CreateMap<Employees, EmployeeViewModel>().ReverseMap();
+            CreateMap<EmployeeTerritories, EmployeeTerritorieViewModel>().ReverseMap();
         }
     }
 }

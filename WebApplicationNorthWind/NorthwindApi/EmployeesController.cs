@@ -9,11 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using WebApplicationNorthWind.Services;
 using AutoMapper;
 using WebApplicationNorthWind.NorthwindModel.Employee;
+using Microsoft.AspNetCore.Cors;
 
 namespace WebApplicationNorthWind.NorthwindApi
 {
     [Produces("application/json")]
-    [Route("api/Employees")]
+    [Route("api/Employees"),EnableCors("AnyGET")]
     public class EmployeesController : Controller
     {
         private IEmployeeRepository _repository;

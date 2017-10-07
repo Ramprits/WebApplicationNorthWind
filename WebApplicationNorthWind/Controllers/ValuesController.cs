@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebApplicationNorthWind.Northwind;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplicationNorthWind.Controllers
 {
@@ -16,7 +17,7 @@ namespace WebApplicationNorthWind.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Customers.ToList());
+            return Ok(_context.Orders.Include(x => x.OrderDetails).ToList());
         }
 
         // GET api/values/5
