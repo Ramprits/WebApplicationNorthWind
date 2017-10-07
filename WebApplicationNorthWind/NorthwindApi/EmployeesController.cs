@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplicationNorthWind.Northwind;
-using Microsoft.EntityFrameworkCore;
 using WebApplicationNorthWind.Services;
 using AutoMapper;
 using WebApplicationNorthWind.NorthwindModel.Employee;
@@ -14,7 +10,7 @@ using Microsoft.AspNetCore.Cors;
 namespace WebApplicationNorthWind.NorthwindApi
 {
     [Produces("application/json")]
-    [Route("api/Employees"),EnableCors("AnyGET")]
+    [Route("api/Employees"), EnableCors("AnyGET")]
     public class EmployeesController : Controller
     {
         private IEmployeeRepository _repository;

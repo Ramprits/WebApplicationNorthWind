@@ -20,13 +20,13 @@ namespace WebApplicationNorthWind
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NorthwindDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("NorthwindConnectionConnection"));
             });
+
             services.AddMvc(opt =>
             {
                 opt.Filters.Add(new RequireHttpsAttribute());
@@ -36,17 +36,17 @@ namespace WebApplicationNorthWind
                 opt.SerializerSettings.ReferenceLoopHandling =
                   ReferenceLoopHandling.Ignore;
             });
-            services.AddCors(cfg =>
+            services.AddCors(config =>
             {
-                cfg.AddPolicy("MyApplication", bldr =>
+                config.AddPolicy("MyApplication", builder =>
                 {
-                    bldr.AllowAnyHeader()
+                    builder.AllowAnyHeader()
                         .AllowAnyMethod();
                 });
 
-                cfg.AddPolicy("AnyGET", bldr =>
+                config.AddPolicy("AnyGET", builder =>
                 {
-                    bldr.AllowAnyHeader()
+                    builder.AllowAnyHeader()
                        .AllowAnyMethod()
                         .AllowAnyOrigin();
                 });
@@ -55,7 +55,6 @@ namespace WebApplicationNorthWind
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
