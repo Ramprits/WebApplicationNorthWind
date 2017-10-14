@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Cors;
 namespace WebApplicationNorthWind.NorthwindApi
 {
     [Produces("application/json")]
-    [Route("api/Employees"), EnableCors("AnyGET")]
+    [Route("api/Employees"), EnableCors("MyApplication")]
     public class EmployeesController : Controller
     {
         private IEmployeeRepository _repository;

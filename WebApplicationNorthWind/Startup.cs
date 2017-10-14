@@ -41,7 +41,7 @@ namespace WebApplicationNorthWind
                 config.AddPolicy("MyApplication", builder =>
                 {
                     builder.AllowAnyHeader()
-                        .AllowAnyMethod();
+                        .AllowAnyMethod().AllowAnyMethod();
                 });
 
                 config.AddPolicy("AnyGET", builder =>
@@ -61,6 +61,12 @@ namespace WebApplicationNorthWind
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors((corsPolicyBuilder) =>
+            {
+                corsPolicyBuilder.AllowAnyOrigin();
+                corsPolicyBuilder.AllowAnyMethod();
+                corsPolicyBuilder.AllowAnyHeader();
+            });
 
             app.UseMvc();
         }

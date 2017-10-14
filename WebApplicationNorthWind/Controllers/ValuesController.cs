@@ -17,7 +17,7 @@ namespace WebApplicationNorthWind.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Orders.Include(x => x.OrderDetails).ToList());
+            return Ok(_context.Customers.ToList());
         }
 
         // GET api/values/5
