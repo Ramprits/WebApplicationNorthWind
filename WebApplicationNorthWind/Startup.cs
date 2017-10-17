@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using WebApplicationNorthWind.Services;
 using AutoMapper;
+using WebApplicationNorthWind.Library;
 
 namespace WebApplicationNorthWind
 {
@@ -17,14 +18,16 @@ namespace WebApplicationNorthWind
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NorthwindDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("NorthwindConnectionConnection"));
+            });
+            services.AddDbContext<LibraryContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("LibraryContextConnectionConnection"));
             });
 
             services.AddMvc(opt =>
@@ -53,8 +56,8 @@ namespace WebApplicationNorthWind
             });
             services.AddAutoMapper();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
         }
-
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

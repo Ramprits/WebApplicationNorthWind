@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApplicationNorthWind.Northwind;
+using WebApplicationNorthWind.NorthwindModel.CustomerModel;
 using WebApplicationNorthWind.NorthwindModel.Employee;
 
 namespace WebApplicationNorthWind.Infrastructure
@@ -15,6 +16,10 @@ namespace WebApplicationNorthWind.Infrastructure
         {
             CreateMap<Employees, EmployeeViewModel>().ReverseMap();
             CreateMap<EmployeeTerritories, EmployeeTerritorieViewModel>().ReverseMap();
+
+            // Customer Mapper here
+            CreateMap<CreationForCustomerDto, Customers>().ReverseMap();
+            CreateMap<Customers, CustomerDto>().ReverseMap();
         }
     }
 }
