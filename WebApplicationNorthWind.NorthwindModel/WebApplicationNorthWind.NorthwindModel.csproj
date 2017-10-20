@@ -8,4 +8,10 @@
     <ProjectReference Include="..\WebApplicationNorthWind.Northwind\WebApplicationNorthWind.Northwind.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="CustomerModel\CustomerDto.cs.d.ts">
+      <DependentUpon>CustomerDto.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+
 </Project>

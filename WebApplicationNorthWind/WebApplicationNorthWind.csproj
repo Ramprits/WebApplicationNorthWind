@@ -28,5 +28,6 @@
     <ProjectReference Include="..\WebApplicationNorthWind.Library\WebApplicationNorthWind.Library.csproj" />
     <ProjectReference Include="..\WebApplicationNorthWind.NorthwindModel\WebApplicationNorthWind.NorthwindModel.csproj" />
     <ProjectReference Include="..\WebApplicationNorthWind.Northwind\WebApplicationNorthWind.Northwind.csproj" />
+    <ProjectReference Include="..\WebApplicationNorthWind.SampleDb\WebApplicationNorthWind.SampleDb.csproj" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationNorthWind", "WebApplicationNorthWind\WebApplicationNorthWind.csproj", "{EBAC6BE0-B17E-4B7F-9861-E0FB7E8CC726}"
 EndProject
@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationNorthWind.Nor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationNorthWind.Adventure", "WebApplicationNorthWind.Adventure\WebApplicationNorthWind.Adventure.csproj", "{9DD0347A-AE04-4F0F-AD2A-2A604023EBD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationNorthWind.Library", "WebApplicationNorthWind.Library\WebApplicationNorthWind.Library.csproj", "{88FD4474-C8D1-4179-93EF-CC93B29E15DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationNorthWind.Library", "WebApplicationNorthWind.Library\WebApplicationNorthWind.Library.csproj", "{88FD4474-C8D1-4179-93EF-CC93B29E15DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationNorthWind.SampleDb", "WebApplicationNorthWind.SampleDb\WebApplicationNorthWind.SampleDb.csproj", "{5AF82FA3-BE77-433E-B5CE-2D1205D91BF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{88FD4474-C8D1-4179-93EF-CC93B29E15DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88FD4474-C8D1-4179-93EF-CC93B29E15DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88FD4474-C8D1-4179-93EF-CC93B29E15DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AF82FA3-BE77-433E-B5CE-2D1205D91BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AF82FA3-BE77-433E-B5CE-2D1205D91BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AF82FA3-BE77-433E-B5CE-2D1205D91BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AF82FA3-BE77-433E-B5CE-2D1205D91BF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

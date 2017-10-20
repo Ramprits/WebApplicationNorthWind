@@ -6,11 +6,12 @@ using AutoMapper;
 using WebApplicationNorthWind.Services;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 
 namespace WebApplicationNorthWind.NorthwindApi
 {
     [Produces("application/json")]
-    [Route("api/Customers")]
+    [Route("api/Customers"), EnableCors("AnyGET")]
     public class CustomersController : Controller
     {
         private readonly ICustomerRepository _repository;
@@ -45,6 +46,14 @@ namespace WebApplicationNorthWind.NorthwindApi
         public IActionResult CreateCustomer([FromBody]CreationForCustomerDto customer)
         {
             if (customer == null)
+            {
+                return BadRequest();
+            }
+            if (customer.CompanyName == customer.ContactName)
+            {
+                return BadRequest($"{customer.CompanyName} couldn't be same {customer.ContactName}");
+            }
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }

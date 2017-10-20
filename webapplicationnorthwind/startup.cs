@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using WebApplicationNorthWind.Services;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
+using WebApplicationNorthWind.SampleDb.SampleEntities;
 
 namespace WebApplicationNorthWind
 {
@@ -17,14 +19,16 @@ namespace WebApplicationNorthWind
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NorthwindDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("NorthwindConnectionConnection"));
+            });
+            services.AddDbContext<SampledbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("SampleDbContext"));
             });
 
             services.AddMvc(opt =>
@@ -53,10 +57,15 @@ namespace WebApplicationNorthWind
             });
             services.AddAutoMapper();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IProductRepositry, ProductRepositry>();
+            services.AddScoped<IFruitRepository, FruitRepository>();
         }
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logerFactory)
         {
+            logerFactory.AddConsole();
+            var loggerForTesting = logerFactory.CreateLogger("TestingCategory");
+            loggerForTesting.LogInformation("Testing logger");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
